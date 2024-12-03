@@ -6,10 +6,23 @@
     <title>Your Name - Academic Profile</title>
     <style>
         :root {
-            --primary-color: #e6e6fa;  /* Pastel purple */
-            --secondary-color: #f0f8ff; /* Light blue */
-            --text-color: #2c3e50;     /* Dark blue-gray */
-            --accent-color: #b0c4de;    /* Light steel blue */
+            --primary-color: #2d2d4d;
+            --secondary-color: #1a1a2e;
+            --text-color: #333;
+            --header-text-color: #f0f0f0;
+            --accent-color: #a8a8d8;
+            --bg-color: #121212;
+            --card-bg: #e6e6fa;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #e6e6fa;
+            --secondary-color: #f0f8ff;
+            --text-color: #333;
+            --header-text-color: #333;
+            --accent-color: #4a4a8a;
+            --bg-color: #ffffff;
+            --card-bg: var(--primary-color);
         }
 
         body {
@@ -18,13 +31,15 @@
             margin: 0;
             padding: 0;
             color: var(--text-color);
-            background-color: var(--secondary-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
         }
 
         .two-column-layout {
@@ -51,25 +66,81 @@
 
         header {
             background-color: var(--primary-color);
-            padding: 2rem 0;
-            text-align: center;
+            padding: 1.5rem 0;
             margin-bottom: 2rem;
+            color: var(--header-text-color);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+
+        .profile-info {
+            text-align: left;
+            padding-left: 1rem;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            margin-right: 1rem;
+        }
+
+        .contact-links {
+            text-align: left;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+            padding-left: 1rem;
+        }
+
+        .contact-links a {
+            color: var(--header-text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent-color);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column-reverse;
+            }
+            .profile-info, .contact-links {
+                text-align: center;
+            }
+            .contact-links {
+                justify-content: center;
+            }
         }
 
         h1 {
             font-size: 2.5rem;
             margin: 0;
-            color: var(--text-color);
+            color: var(--header-text-color);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #666;
-            margin-top: 0.5rem;
+            color: var(--header-text-color);
+            opacity: 0.9;
+            margin: 0.5rem 0;
         }
 
         section {
-            background: white;
+            background: var(--card-bg);
             padding: 2rem;
             margin-bottom: 2rem;
             border-radius: 8px;
@@ -81,23 +152,6 @@
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 0.5rem;
             margin-top: 0;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .contact-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-links a:hover {
-            color: var(--accent-color);
         }
 
         .publications li, .projects li, .workshops li, .awards li, .research-experience li, .work-experience li, .references li, .articles li {
@@ -113,19 +167,56 @@
             padding: 2rem 0;
             background-color: var(--primary-color);
             margin-top: 2rem;
+            color: var(--header-text-color);
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .theme-switch button {
+            background: var(--primary-color);
+            border: 2px solid var(--accent-color);
+            color: var(--header-text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-switch button:hover {
+            background: var(--accent-color);
+            color: var(--header-text-color);
         }
     </style>
 </head>
 <body>
+    <div class="theme-switch">
+        <button onclick="toggleTheme()" id="theme-toggle">☀️ Light Mode</button>
+    </div>
     <header>
         <div class="container">
-            <h1>Karthik B K</h1>
-            <p class="subtitle">CPU Micro-Architect / Digital System Designer</p>
-            <div class="contact-links">
-                <a href="mailto:karthik.bk@incoresemi.com">Email</a>
-                <a href="https://github.com/iamkarthikbk">GitHub</a>
-                <a href="https://scholar.google.com">Google Scholar</a>
-                <a href="https://linkedin.com/in/iamkarthikbk">LinkedIn</a>
+            <div class="header-content">
+                <div>
+                    <div class="profile-info">
+                        <h1>Karthik B K</h1>
+                        <p class="subtitle">CPU Micro-Architect</p>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:karthik.bk@incoresemi.com">Email</a>
+                        <a href="https://github.com/iamkarthikbk">GitHub</a>
+                        <a href="https://scholar.google.com">Google Scholar</a>
+                        <a href="https://linkedin.com/in/iamkarthikbk">LinkedIn</a>
+                    </div>
+                </div>
+                <img src="images/profile.jpeg" alt="Karthik B K" class="profile-photo">
             </div>
         </div>
     </header>
@@ -133,7 +224,7 @@
     <main class="container">
         <div class="two-column-layout">
             <div class="main-column">
-                <section>
+                <section class="about">
                     <h2>About</h2>
                     <p>
                         I am currently with InCore as a CPU Design Engineer / Micro-Architect, for about 3 years now.
@@ -143,7 +234,27 @@
                     </p>
                 </section>
 
-                <section>
+                <section class="education">
+                    <h2>Education</h2>
+                    <ul>
+                        <li>
+                            <strong>Indian Institute of Technology Madras</strong>
+                            <br>
+                            Master of Science by Research, Electrical Engineering 
+                            <br>
+                            2025 - Present
+                        </li>
+                        <li>
+                            <strong>PES University</strong>
+                            <br>
+                            Bachelor of Technology, Electronics and Communication Engineering
+                            <br>
+                            2018 - 2022
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="publications">
                     <h2>Publications</h2>
                     <ul class="publications">
                         <li>
@@ -357,5 +468,29 @@
             <p> 2025 Karthik B K. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        function toggleTheme() {
+            const body = document.documentElement;
+            const button = document.getElementById('theme-toggle');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                body.removeAttribute('data-theme');
+                button.innerHTML = '☀️ Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                button.innerHTML = '🌙 Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.getElementById('theme-toggle').innerHTML = '🌙 Dark Mode';
+        }
+    </script>
 </body>
 </html>
