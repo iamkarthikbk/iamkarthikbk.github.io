@@ -22,9 +22,31 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .main-column {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .side-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .main-column, .side-column {
+                flex: 100%;
+            }
         }
 
         header {
@@ -78,7 +100,11 @@
             color: var(--accent-color);
         }
 
-        .publications li, .projects li, .workshops li, .awards li, .research-experience li, .work-experience li, .references li {
+        .publications li, .projects li, .workshops li, .awards li, .research-experience li, .work-experience li, .references li, .articles li {
+            margin-bottom: 1rem;
+        }
+
+        .references li {
             margin-bottom: 1rem;
         }
 
@@ -94,7 +120,7 @@
     <header>
         <div class="container">
             <h1>Karthik B K</h1>
-            <p class="subtitle">digital system designer/cpu micro-architect</p>
+            <p class="subtitle">CPU Micro-Architect / Digital System Designer</p>
             <div class="contact-links">
                 <a href="mailto:karthik.bk@incoresemi.com">Email</a>
                 <a href="https://github.com/iamkarthikbk">GitHub</a>
@@ -105,128 +131,225 @@
     </header>
 
     <main class="container">
-        <section>
-            <h2>About</h2>
-            <p>
-                I am currently with InCore as a cpu design engineer/micro-architect, for about 3 years now.
-                I am also a student at IIT Madras pursuing my MS in Electrical Engineering.
-                Prior to this, I was with the Centre for Heterogeneous and Intelligent Processing Systems working on Energy Efficient Computing Techniques.
-                Prior to that, I was a mentee at the Linux Foundation working on device drivers for the Linux kernel.
-            </p>
-        </section>
+        <div class="two-column-layout">
+            <div class="main-column">
+                <section>
+                    <h2>About</h2>
+                    <p>
+                        I am currently with InCore as a CPU Design Engineer / Micro-Architect, for about 3 years now.
+                        I am also a student at IIT Madras pursuing my MS in Electrical Engineering.
+                        Prior to this, I was with the Centre for Heterogeneous and Intelligent Processing Systems working on Energy Efficient Computing Techniques.
+                        Prior to that, I was a mentee at the Linux Foundation working on device drivers for the Linux kernel.
+                    </p>
+                </section>
 
-        <section>
-            <h2>Research Interests</h2>
-            <ul>
-                <li>Digital System Design</li>
-                <li>Coputer Architecture</li>
-            </ul>
-        </section>
+                <section>
+                    <h2>Publications</h2>
+                    <ul class="publications">
+                        <li>
+                            Suroshi, V., <strong>Karthik, B. K.</strong>, Kannur, V., Reddy, V., & Purnaprajna, M. (2025).<br>
+                            Optimization of sub-threshold standard cells for energy efficient designs. <br>
+                            <em>38th International Conference on VLSI Design (VLSID)</em>. 
+                            <!-- [<a href="#">PDF</a>] --> <!-- [<a href="#">Code</a>] -->
+                        </li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Publications</h2>
-            <ul class="publications">
-                <li>
-                    Suroshi, V., Karthik, B. K., Kannur, V., Reddy, V., & Purnaprajna, M. (2025). Optimization of sub-threshold standard cells for energy efficient designs
-                    <em>38th International Conference on VLSI Design (VLSID)</em>. 
-                    [<a href="#">PDF</a>] <!-- [<a href="#">Code</a>] -->
-                </li>
-                <!-- Add more publications as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>Work Experience</h2>
+                    <ul class="work-experience">
+                        <li>
+                            <strong>CPU Design Engineer / Micro-Architect</strong>
+                            <br>
+                            InCore Semiconductors | Jan 2022 - Present
+                            <br>
+                            Supervisor: Neel Gala
+                            <br>
+                            • Correct-by-construction decoders (RV) and decompressors (RVC).
+                            <br>
+                            • Frontend, specially instruction-fetch for in-order (superscalar, upto 2) CPUs.
+                            <br>
+                            • RISC-V Physical Memory Protection Checkers.
+                            <br>
+                            • Switchable TCMs.
+                            <br>
+                            • Invisible Trap Infrastructure.
+                            <br>
+                            • Op-2-Use Latency Reduction.
+                            <br>
+                            • Benchmarking and PPA Optimization.
+                            <br>
+                            • Application Profiling.
+                            <br>
+                            • Verified various core and uncore IPs during the course of my internship.
+                            <br>
+                            • Bluspec System Verilog, Python, RISC-V Assembly.
+                        </li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Workshops & Talks</h2>
-            <ul class="workshops">
-                <li>
-                    <strong>Workshop Title</strong> (Date)
-                    <br>
-                    Venue/Conference/Institution
-                    <br>
-                    Brief description of the workshop/talk and your role.
-                </li>
-                <!-- Add more workshops as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>Research Experience</h2>
+                    <ul class="research-experience">
+                        <li>
+                            <strong>Research Intern</strong>
+                            <br>
+                            Centre for Heterogeneous and Intelligent Processing Systems | Jan 2021 - Dec 2021
+                            <br>
+                            Advisor: Madhura Purnaprajna
+                            <br>
+                            • Studied the effects of supply voltage scaling on power and performance of standard cells.
+                            <br>
+                            • Designed and simulated a sub-threshold standard cells to optimize energy efficiency.
+                            <br>
+                            • Teaching Assistant for the EDA class of 2021.
+                            <br>
+                            • UMC 55nm Commercial Process Node
+                        </li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Awards & Recognition</h2>
-            <ul class="awards">
-                <li>
-                    <strong>Award Name</strong> (Year)
-                    <br>
-                    Awarding Institution/Organization
-                    <br>
-                    Brief description of the award and its significance.
-                </li>
-                <!-- Add more awards as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>References</h2>
+                    <ul class="references">
+                        <li>
+                            <strong>Neel Gala</strong>
+                            <br>
+                            Co-Founder / CTO, InCore Semiconductors
+                            <br>
+                            <a href="mailto:neelgala@incoresemi.com">neelgala@incoresemi.com</a>
+                        </li>
+                        <li>
+                            <strong>Nitin Chandrachoodan</strong>
+                            <br>
+                            Professor, D-EE, Integrated Circuits and Systems
+                            <br>
+                            Indian Institute of Technology Madras
+                            <br>
+                            <a href="mailto:nitin@ee.iitm.ac.in">nitin@ee.iitm.ac.in</a>
+                        </li>
+                        <li>
+                            <strong>Madhura Purnaprajna</strong>
+                            <br>
+                            Professor, PES University
+                            <br>
+                            <a href="mailto:madhurap@pes.edu">madhurap@pes.edu</a>
+                        </li>
+                        <li>
+                            <strong>Boris Grot</strong>
+                            <br>
+                            Professor, University of Edinburgh
+                            <br>
+                            <a href="mailto:boris.grot@ed.ac.uk">boris.grot@ed.ac.uk</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
 
-        <section>
-            <h2>Projects</h2>
-            <ul class="projects">
-                <li>
-                    <strong>Project Name</strong>
-                    <br>
-                    Duration: MM/YYYY - MM/YYYY
-                    <br>
-                    Brief description of the project, your role, and key achievements.
-                    [<a href="#">GitHub</a>] [<a href="#">Demo</a>]
-                </li>
-                <!-- Add more projects as needed -->
-            </ul>
-        </section>
+            <div class="side-column">
+                <section>
+                    <h2>Research Interests</h2>
+                    <ul>
+                        <li>Digital System Design</li>
+                        <li>Computer Architecture</li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Research Experience</h2>
-            <ul class="research-experience">
-                <li>
-                    <strong>Research Position</strong>
-                    <br>
-                    Institution Name | MM/YYYY - MM/YYYY
-                    <br>
-                    Advisor: Professor Name
-                    <br>
-                    • Key research contributions and findings
-                    <br>
-                    • Technologies/methodologies used
-                </li>
-                <!-- Add more research experiences as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>Articles & Blogs</h2>
+                    <ul class="articles">
+                        <li>
+                            <strong>Exploring the hidden wonders: CPU Micro-Architecture</strong>
+                            <br>
+                            Medium | June 2023
+                            <br>
+                            A short article on CPU Micro-Architecture.
+                            <br>
+                            [<a href="https://medium.com/@talktokarthikbk/exploring-the-hidden-wonders-cpu-micro-architecture-b8bb680738b7">Read Here</a>]
+                        </li>
+                        <li>
+                            <strong>RISC-V Memory Protection: Diving Deep into the Complexities</strong>
+                            <br>
+                            Medium | Nov 2023
+                            <br>
+                            A short article on RISC-V Physical Memory Protection.
+                            <br>
+                            [<a href="https://medium.com/@talktokarthikbk/risc-v-memory-protection-diving-deep-into-the-complexities-9d751212be6b">Read Here</a>]
+                        </li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>Work Experience</h2>
-            <ul class="work-experience">
-                <li>
-                    <strong>Job Title</strong>
-                    <br>
-                    Company Name | MM/YYYY - MM/YYYY
-                    <br>
-                    • Key responsibilities and achievements
-                    <br>
-                    • Technologies/tools used
-                </li>
-                <!-- Add more work experiences as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>Awards & Recognition</h2>
+                    <ul class="awards">
+                        <li>
+                            <strong>Chairperson's list of top ten performers</strong> (2022)
+                            <br>
+                            D-ECE, PES University
+                            <br>
+                            Recieved the chairperson's award for top scorers with consistent academic performance and demonstrating an exemplary commitment to learning.
+                        </li>
+                    </ul>
+                </section>
 
-        <section>
-            <h2>References</h2>
-            <ul class="references">
-                <li>
-                    <strong>Professor Full Name</strong>
-                    <br>
-                    Title & Department
-                    <br>
-                    Institution
-                    <br>
-                    Research Area: Specialization
-                </li>
-                <!-- Add more references as needed -->
-            </ul>
-        </section>
+                <section>
+                    <h2>Workshops</h2>
+                    <ul class="workshops">
+                        <li>
+                            <strong>FPGA Summer School</strong> (2024)
+                            <br>
+                            PES University
+                            <br>
+                            Attendee.
+                        </li>
+                        <li>
+                            <strong>EFCL Summer School</strong> (2024)
+                            <br>
+                            ETH Zurich
+                            <br>
+                            Attendee.
+                        </li>
+                        <li>
+                            <strong>Computer Architecture Winter School</strong> (2021)
+                            <br>
+                            PES University, IIT Madras
+                            <br>
+                            Attendee.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Projects</h2>
+                    <ul class="projects">
+                        <li>
+                            <strong>RISC-V Application Profiler</strong>
+                            <br>
+                            Duration: Jun 2023 - Sep 2023
+                            <br>
+                            Secondary Contributor/Mentor.
+                            [<a href="https://riscv-application-profiler.readthedocs.io/en/latest/">Docs</a>] [<a href="https://github.com/mahendraVamshi/riscv-application-profiler">Code</a>]
+                        </li>
+                        <li>
+                            <strong>Energy Efficient Sub-Threshold Standard Cells</strong>
+                            <br>
+                            Duration: Oct 2020 - Dec 2021
+                            <br>
+                            Bachelor's thesis project. Primary Contributor.
+                            [<a href="https://subvt.readthedocs.io/">Docs</a>] <!-- [<a href="#">Demo</a>] -->
+                        </li>
+                        <li>
+                            <strong>uATG tests for a Non-Coherent Cache Subsystem (Chromite)</strong>
+                            <br>
+                            Duration: Jun 2020 - Nov 2021
+                            <br>
+                            Course project. Co-contributor.
+                            <!-- [<a href="https://subvt.readthedocs.io/">Docs</a>] --> [<a href="https://github.com/VIshweswaranK/Caches">Code</a>]
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer>
