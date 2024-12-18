@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamber of Secrets</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #d4beff;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px #d4beff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .secret-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #d4beff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #d4beff;
+            }
+            to {
+                text-shadow: 0 0 20px #d4beff, 0 0 30px #d4beff;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        .quote {
+            font-style: italic;
+            margin: 2rem 0;
+            padding: 1rem;
+            border-left: 3px solid #d4beff;
+            animation-delay: 1s;
+        }
+
+        .secret-content {
+            display: none;
+        }
+
+        .shard-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .shard-input {
+            background: rgba(212, 190, 255, 0.1);
+            border: 1px solid #d4beff;
+            border-radius: 4px;
+            padding: 1rem;
+            color: #d4beff;
+            font-family: 'Courier New', monospace;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .shard-input:focus {
+            outline: none;
+            border-color: #fff;
+            background: rgba(212, 190, 255, 0.2);
+        }
+
+        .shard-input::placeholder {
+            color: rgba(212, 190, 255, 0.5);
+        }
+
+        input {
+            background: transparent;
+            border: 1px solid #d4beff;
+            color: #d4beff;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            font-family: inherit;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid #d4beff;
+            color: #d4beff;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #d4beff;
+            color: #0a0a0a;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back</a>
+    
+    <div class="container">
+        <h1>Chamber of Secrets</h1>
+        
+        <div class="secret-text quote">
+            "In ancient times, the wisest of wizards divided their most precious secrets into shards, 
+            ensuring that no single person could hold too much power..."
+        </div>
+
+        <div class="secret-text">
+            Welcome to my Chamber of Secrets. Only those who possess enough key shards may enter.
+        </div>
+
+        <div class="password-form secret-text">
+            <input type="password" id="secretPassword" placeholder="Speak friend and enter...">
+            <button onclick="checkPassword()">Enter</button>
+        </div>
+
+        <div id="secretContent" class="secret-content secret-text">
+            The chamber has been opened.. alas, it is empty.
+            <div class="secure-access" style="margin-top: 2rem;">
+                <p>But wait... there's a hidden door.</p>
+                <p>To unlock it, you must provide 3 of the 5 key shards:</p>
+                
+                <div class="shard-inputs">
+                    <input type="text" class="shard-input" id="shard1" placeholder="Enter first shard (e.g., 1:AbCdEf...)">
+                    <input type="text" class="shard-input" id="shard2" placeholder="Enter second shard (e.g., 2:GhIjKl...)">
+                    <input type="text" class="shard-input" id="shard3" placeholder="Enter third shard (e.g., 3:MnOpQr...)">
+                </div>
+
+                <button onclick="attemptUnlock()" id="unlockButton">Combine Shards</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('secretPassword').value;
+            const secretContent = document.getElementById('secretContent');
+            
+            if (password === "alohomora") {
+                secretContent.style.display = 'block';
+            } else {
+                alert("The chamber remains sealed..");
+            }
+        }
+
+        async function attemptUnlock() {
+            const shard1 = document.getElementById('shard1').value.trim();
+            const shard2 = document.getElementById('shard2').value.trim();
+            const shard3 = document.getElementById('shard3').value.trim();
+
+            if (!shard1 || !shard2 || !shard3) {
+                alert('Please enter all three shards');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/verify-shards', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        shards: [shard1, shard2, shard3]
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    window.location.href = '/secure';
+                } else {
+                    alert(data.error || 'Failed to unlock the chamber');
+                }
+            } catch (error) {
+                alert('Error unlocking the chamber');
+            }
+        }
+    </script>
+</body>
+</html>
