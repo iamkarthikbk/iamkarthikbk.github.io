@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Academic Profile</title>
+    <title>karthik.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <style>
         :root {
             --primary-color: #2a2a2a;
@@ -18,7 +19,7 @@
         }
 
         body {
-            font-family: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Menlo', 'Monaco', monospace;
+            font-family: 'Courier New', monospace;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -28,15 +29,15 @@
         }
 
         .container {
-            max-width: 1200px;
+            width: 75%;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem 0.5rem;
             position: relative;
         }
 
         .two-column-layout {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -58,42 +59,42 @@
 
         header {
             background-color: var(--primary-color);
-            padding: 1.5rem 0;
-            margin-bottom: 2rem;
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
             color: var(--header-text-color);
             border-bottom: 1px solid var(--accent-color);
+            width: 100%;
         }
 
         .header-content {
+            width: 75%;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            padding: 0 1rem;
+            gap: 1.5rem;
+            padding: 0;
         }
 
         .profile-info {
-            text-align: left;
-            padding-left: 1rem;
+            flex-grow: 1;
         }
 
         .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 4px;
+            width: 160px;
+            height: 160px;
+            border-radius: 0%;
             object-fit: cover;
-            border: 3px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            flex-shrink: 0;
-            margin-right: 1rem;
+            border: 2px solid var(--accent-color);
         }
 
         .contact-links {
-            text-align: left;
             margin-top: 0.5rem;
-            display: flex;
-            gap: 1rem;
-            padding-left: 1rem;
+        }
+
+        .contact-links a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin-right: 1rem;
         }
 
         a {
@@ -149,34 +150,32 @@
         }
 
         section {
-            background: var(--card-bg);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            border: 1px solid var(--primary-color);
-            box-shadow: none;
+            margin-bottom: 1.5rem;
         }
 
         h2 {
-            color: var(--text-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 0.25rem;
             margin-top: 0;
-        }
-
-        .publications li, .projects li, .workshops li, .awards li, .research-experience li, .work-experience li, .references li, .articles li {
             margin-bottom: 1rem;
         }
 
-        .references li {
-            margin-bottom: 1rem;
+        .publications li, .projects li, .workshops li, .awards li, 
+        .research-experience li, .work-experience li, .references li, 
+        .articles li {
+            margin-bottom: 0.75rem;
+        }
+
+        .slightly-large-text {
+            font-size: 1.2em;
         }
 
         footer {
             text-align: center;
-            padding: 2rem 0;
+            padding: 1rem 0;
             background-color: var(--primary-color);
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             color: var(--header-text-color);
             border-top: 1px solid var(--accent-color);
         }
@@ -188,21 +187,15 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div>
-                    <div class="profile-info">
-                        <h1>Karthik B K</h1>
-                        <p class="subtitle">CPU Micro-Architect</p>
-                    </div>
-                    <div class="contact-links">
-                        <a href="mailto:karthik.bk@incoresemi.com">Email</a>
-                        <a href="https://github.com/iamkarthikbk">GitHub</a>
-                        <a href="https://scholar.google.com">Google Scholar</a>
-                        <a href="https://linkedin.com/in/iamkarthikbk">LinkedIn</a>
-                    </div>
+        <div class="header-content">
+            <img src="images/profile.jpeg" alt="Karthik B K" class="profile-photo">
+            <div class="profile-info">
+                <h1>Karthik B K</h1>
+                <div class="subtitle">CPU Design Engineer / Micro-Architect</div>
+                <div class="contact-links">
+                    <a href="mailto:karthik.bk@incoresemi.com">Email</a>
+                    <a href="https://github.com/iamkarthikbk">GitHub</a>
                 </div>
-                <img src="images/profile.jpeg" alt="Karthik B K" class="profile-photo">
             </div>
         </div>
     </header>
@@ -224,14 +217,14 @@
                     <h2>Education</h2>
                     <ul>
                         <li>
-                            <strong>Indian Institute of Technology Madras</strong>
+                            <strong class="slightly-large-text">Indian Institute of Technology Madras</strong>
                             <br>
                             Master of Science by Research, Electrical Engineering 
                             <br>
                             2025 - Present
                         </li>
                         <li>
-                            <strong>PES University</strong>
+                            <strong class="slightly-large-text">PES University</strong>
                             <br>
                             Bachelor of Technology, Electronics and Communication Engineering
                             <br>
@@ -256,31 +249,15 @@
                     <h2>Work Experience</h2>
                     <ul class="work-experience">
                         <li>
-                            <strong>CPU Design Engineer / Micro-Architect</strong>
+                            <strong class="slightly-large-text">CPU Design Engineer / Micro-Architect</strong>
                             <br>
                             InCore Semiconductors | Jan 2022 - Present
                             <br>
-                            Supervisor: Neel Gala
+                            Direct Supervisor: Neel Gala
                             <br>
-                            • Correct-by-construction decoders (RV) and decompressors (RVC).
+                            I worked on various exciting things at InCore. All the way from core micro-arch to application profiling and secure-boot.
+                            Most of it has been uArch for Calcite, mostly frontend, especially instruction fetch and physical memory protection. I was directly supervised by Neel Gala.
                             <br>
-                            • Frontend, specially instruction-fetch for in-order (superscalar, upto 2) CPUs.
-                            <br>
-                            • RISC-V Physical Memory Protection Checkers.
-                            <br>
-                            • Switchable TCMs.
-                            <br>
-                            • Invisible Trap Infrastructure.
-                            <br>
-                            • Op-2-Use Latency Reduction.
-                            <br>
-                            • Benchmarking and PPA Optimization.
-                            <br>
-                            • Application Profiling.
-                            <br>
-                            • Verified various core and uncore IPs during the course of my internship.
-                            <br>
-                            • Bluspec System Verilog, Python, RISC-V Assembly.
                         </li>
                     </ul>
                 </section>
@@ -289,7 +266,7 @@
                     <h2>Research Experience</h2>
                     <ul class="research-experience">
                         <li>
-                            <strong>Research Intern</strong>
+                            <strong class="slightly-large-text">Research Intern</strong>
                             <br>
                             Centre for Heterogeneous and Intelligent Processing Systems | Jan 2021 - Dec 2021
                             <br>
@@ -310,34 +287,36 @@
                     <h2>References</h2>
                     <ul class="references">
                         <li>
-                            <strong>Neel Gala</strong>
+                            <strong class="slightly-large-text">Neel Gala</strong>
                             <br>
-                            Co-Founder / CTO, InCore Semiconductors
+                            CTO / Co-Founder, InCore Semiconductors
                             <br>
                             <a href="mailto:neelgala@incoresemi.com">neelgala@incoresemi.com</a>
                         </li>
                         <li>
-                            <strong>Nitin Chandrachoodan</strong>
+                            <strong class="slightly-large-text">Nitin Chandrachoodan</strong>
                             <br>
-                            Professor, Integrated Circuits and Systems
+                            Professor, Integrated Circuits and Systems (ICS)
                             <br>
                             Indian Institute of Technology Madras
                             <br>
                             <a href="mailto:nitin@ee.iitm.ac.in">nitin@ee.iitm.ac.in</a>
                         </li>
                         <li>
-                            <strong>Madhura Purnaprajna</strong>
+                            <strong class="slightly-large-text">Madhura Purnaprajna</strong>
                             <br>
-                            Professor, Centre for Heterogeneous and Intelligent Processing Systems
+                            Professor, Centre for Heterogeneous and Intelligent Processing Systems (CHIPS)
                             <br>
                             PES University
                             <br>
                             <a href="mailto:madhurap@pes.edu">madhurap@pes.edu</a>
                         </li>
                         <li>
-                            <strong>Boris Grot</strong>
+                            <strong class="slightly-large-text">Boris Grot</strong>
                             <br>
-                            Professor, University of Edinburgh
+                            Professor, Edinburgh Architecture and Systems Lab (EASE)
+                            <br>
+                            University of Edinburgh
                             <br>
                             <a href="mailto:boris.grot@ed.ac.uk">boris.grot@ed.ac.uk</a>
                         </li>
@@ -350,15 +329,16 @@
                     <h2>Projects</h2>
                     <ul class="projects">
                         <li>
-                            <strong>RISC-V Application Profiler</strong>
+                            <strong class="slightly-large-text">RISC-V Application Profiler</strong>
                             <br>
                             Duration: Jun 2023 - Sep 2023
                             <br>
-                            Secondary Contributor/Mentor.
-                            [<a href="https://riscv-application-profiler.readthedocs.io/en/latest/">Docs</a>] [<a href="https://github.com/mahendraVamshi/riscv-application-profiler">Code</a>]
+                            Mentor. Secondary Contributor.
+                            <!-- [<a href="https://riscv-application-profiler.readthedocs.io/en/latest/">Docs</a>] -->
+                            [<a href="https://github.com/mahendraVamshi/riscv-application-profiler">Code</a>]
                         </li>
                         <li>
-                            <strong>Energy Efficient Sub-Threshold Standard Cells</strong>
+                            <strong class="slightly-large-text">Energy Efficient Sub-Threshold Standard Cells</strong>
                             <br>
                             Duration: Oct 2020 - Dec 2021
                             <br>
@@ -366,7 +346,7 @@
                             [<a href="https://subvt.readthedocs.io/">Docs</a>] <!-- [<a href="#">Demo</a>] -->
                         </li>
                         <li>
-                            <strong>uATG tests for a Non-Coherent Cache Subsystem (Chromite)</strong>
+                            <strong class="slightly-large-text">uATG tests for a Non-Coherent Cache Subsystem (Chromite)</strong>
                             <br>
                             Duration: Jun 2020 - Nov 2021
                             <br>
@@ -380,7 +360,7 @@
                     <h2>Articles & Blogs</h2>
                     <ul class="articles">
                         <li>
-                            <strong>Exploring the hidden wonders: CPU Micro-Architecture</strong>
+                            <strong class="slightly-large-text">Exploring the hidden wonders: CPU Micro-Architecture</strong>
                             <br>
                             Medium | June 2023
                             <br>
@@ -389,7 +369,7 @@
                             [<a href="https://medium.com/@talktokarthikbk/exploring-the-hidden-wonders-cpu-micro-architecture-b8bb680738b7">Read Here</a>]
                         </li>
                         <li>
-                            <strong>RISC-V Memory Protection: Diving Deep into the Complexities</strong>
+                            <strong class="slightly-large-text">RISC-V Memory Protection: Diving Deep into the Complexities</strong>
                             <br>
                             Medium | Nov 2023
                             <br>
@@ -404,21 +384,21 @@
                     <h2>Workshops</h2>
                     <ul class="workshops">
                         <li>
-                            <strong>FPGA Summer School</strong> (2024)
+                            <strong class="slightly-large-text">FPGA Summer School</strong> (2024)
                             <br>
                             PES University
                             <br>
                             Attendee.
                         </li>
                         <li>
-                            <strong>EFCL Summer School</strong> (2024)
+                            <strong class="slightly-large-text">EFCL Summer School</strong> (2024)
                             <br>
                             ETH Zurich
                             <br>
                             Attendee.
                         </li>
                         <li>
-                            <strong>Computer Architecture Winter School</strong> (2021)
+                            <strong class="slightly-large-text">Computer Architecture Winter School</strong> (2021)
                             <br>
                             PES University, IIT Madras
                             <br>
@@ -431,7 +411,7 @@
                     <h2>Awards & Recognition</h2>
                     <ul class="awards">
                         <li>
-                            <strong>Chairperson's list of top ten performers</strong> (2022)
+                            <strong class="slightly-large-text">Chairperson's list of top ten performers</strong> (2022)
                             <br>
                             D-ECE, PES University
                             <br>
