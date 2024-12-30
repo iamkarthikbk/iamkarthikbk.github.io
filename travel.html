@@ -216,12 +216,26 @@
             color: var(--text-color);
             font-size: 0.8rem;
         }
+
+        .page-heading {
+            font-size: 2.5em;
+            margin-bottom: 2rem;
+            color: var(--header-text-color);
+            position: absolute;
+            top: 80px;
+            left: 12.5%;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="nav-button back-button">←</a>
+    <a href="home.html" class="nav-button back-button">←</a>
     <button class="nav-button grid-toggle">⊞</button>
 
+    <h1 class="page-heading">karthik's travel.</h1>
     <main class="container">
         <div class="map-container">
             <img src="images/world.svg" alt="World Map">

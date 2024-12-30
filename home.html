@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>karthik.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #2a2a2a;
+            --secondary-color: #1a1a1a;
+            --text-color: #e6e6e6;
+            --header-text-color: #f0f0f0;
+            --accent-color: #b19cd9;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --link-color: #9ccfd8;
+            --link-visited: #c4a7e7;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 75%;
+            max-width: 800px;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 0%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--header-text-color);
+            font-size: 2.5em;
+            margin: 0.5rem 0;
+        }
+
+        .subtitle {
+            color: var(--accent-color);
+            font-size: 1.2em;
+            margin-bottom: 2rem;
+        }
+
+        .about {
+            text-align: justify;
+            margin: 2rem 0;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            border-radius: 8px;
+        }
+
+        .about a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .about a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-links {
+            margin-top: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:visited {
+            color: var(--link-visited);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images/profile.jpeg" alt="Karthik B K" class="profile-photo">
+        <h1>karthik.</h1>
+        <div class="subtitle">cpu design engineer / micro-architect</div>
+        
+        <div class="about">
+            <p>
+                I am an engineer, deep sea diver, photographer, and a huge fitness enthusiast amongst many other things.
+            </p><p>
+                I am currently with <a href="https://www.incoresemi.com" target="_blank">InCore</a> as a CPU Design Engineer / Micro-Architect, for about 3 years now.
+                I am also a student at <a href="https://www.iitm.ac.in" target="_blank">IIT Madras</a> pursuing my MS in Electrical Engineering.
+            </p><p>
+                Prior to this, I was with the <a href="https://chips.pes.edu" target="_blank">Centre for Heterogeneous and Intelligent Processing Systems</a> working on Energy Efficient Computing Techniques.
+                Prior to that, I was a mentee at the Linux Foundation working on device drivers for the Linux kernel.
+            </p><p>
+                My research interests lie in Digital System Design and Computer Architecture.
+            </p>
+        </div>
+
+        <div class="nav-links">
+            <a href="portfolio.html">portfolio</a>
+            <a href="travel.html">travel</a>
+            <a href="diving.html">diving</a>
+            <a href="fitness.html">fitness</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>embrace ai. resistance is futile.</p>
+    </footer>
+</body>
+</html>

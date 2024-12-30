@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>karthik.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #2a2a2a;
+            --secondary-color: #1a1a1a;
+            --text-color: #e6e6e6;
+            --header-text-color: #f0f0f0;
+            --accent-color: #b19cd9;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --link-color: #9ccfd8;
+            --link-visited: #c4a7e7;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 75%;
+            margin: 0 auto;
+            padding: 1rem 0.5rem;
+            position: relative;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .main-column {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .side-column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .main-column, .side-column {
+                flex: 100%;
+            }
+        }
+
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+            color: var(--header-text-color);
+            border-bottom: 1px solid var(--accent-color);
+            width: 100%;
+        }
+
+        .header-content {
+            width: 75%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 0%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .contact-links {
+            margin-top: 0.5rem;
+        }
+
+        .contact-links a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:visited {
+            color: var(--link-visited);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-links a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .contact-links a:visited {
+            color: var(--link-visited);
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column-reverse;
+            }
+            .profile-info, .contact-links {
+                text-align: center;
+            }
+            .contact-links {
+                justify-content: center;
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--header-text-color);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--header-text-color);
+            opacity: 0.9;
+            margin: 0.5rem 0;
+        }
+
+        section {
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 0.25rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .publications li, .projects li, .workshops li, .awards li, 
+        .research-experience li, .work-experience li, .references li, 
+        .articles li {
+            margin-bottom: 0.75rem;
+        }
+
+        .slightly-large-text {
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: var(--primary-color);
+            margin-top: 1.5rem;
+            color: var(--header-text-color);
+            border-top: 1px solid var(--accent-color);
+        }
+
+        .theme-switch {
+            display: none;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.2em;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+
+        .nav-button:hover {
+            background: var(--secondary-color);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="nav-button back-button">←</a>
+    <header>
+        <div class="header-content">
+            <img src="images/profile.jpeg" alt="Karthik B K" class="profile-photo">
+            <div class="profile-info">
+                <h1>Karthik B K</h1>
+                <div class="subtitle">CPU Design Engineer / Micro-Architect</div>
+                <div class="contact-links">
+                    <a href="mailto:karthik.bk@incoresemi.com">Email</a>
+                    <a href="https://github.com/iamkarthikbk">GitHub</a>
+                    <a href="https://www.linkedin.com/in/iamkarthikbk">LinkedIn</a>
+                    <!-- <a href="travel.html">Travel</a>
+                    <a href="diving.html">Diving</a> -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="two-column-layout">
+            <div class="main-column">
+                <!-- <section class="about">
+                    <h2>About</h2>
+                    <p>
+                        I am currently with InCore as a CPU Design Engineer / Micro-Architect, for about 3 years now.
+                        I am also a student at IIT Madras pursuing my MS in Electrical Engineering.
+                        Prior to this, I was with the Centre for Heterogeneous and Intelligent Processing Systems working on Energy Efficient Computing Techniques.
+                        Prior to that, I was a mentee at the Linux Foundation working on device drivers for the Linux kernel. My research interests lie in Digital System Design and Computer Architecture.
+                    </p>
+                </section> -->
+
+                <section class="education">
+                    <h2>Education</h2>
+                    <ul>
+                        <li>
+                            <strong class="slightly-large-text">Indian Institute of Technology Madras</strong>
+                            <br>
+                            Master of Science by Research, Electrical Engineering 
+                            <br>
+                            2025 - Present
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">PES University</strong>
+                            <br>
+                            Bachelor of Technology, Electronics and Communication Engineering
+                            <br>
+                            2018 - 2022
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="publications">
+                    <h2>Publications</h2>
+                    <ul class="publications">
+                        <li>
+                            Suroshi, V., <strong>Karthik, B. K.</strong>, Kannur, V., Reddy, V., & Purnaprajna, M. (2025).<br>
+                            Optimization of sub-threshold standard cells for energy efficient designs. <br>
+                            <em>38th International Conference on VLSI Design (VLSID)</em>. 
+                            <!-- [<a href="#">PDF</a>] --> <!-- [<a href="#">Code</a>] -->
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Work Experience</h2>
+                    <ul class="work-experience">
+                        <li>
+                            <strong class="slightly-large-text">CPU Design Engineer / Micro-Architect</strong>
+                            <br>
+                            InCore Semiconductors | Jan 2022 - Present
+                            <br>
+                            <br>
+                            I worked on various exciting things at InCore. All the way from core micro-arch to application profiling and secure-boot.
+                            Most of it has been uArch for Calcite, mostly frontend, especially instruction fetch and physical memory protection. I was directly supervised by Neel Gala.
+                            <br>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Research Experience</h2>
+                    <ul class="research-experience">
+                        <li>
+                            <strong class="slightly-large-text">Research Intern</strong>
+                            <br>
+                            Centre for Heterogeneous and Intelligent Processing Systems | Jan 2021 - Dec 2021
+                            <br>
+                            Advisor: Madhura Purnaprajna
+                            <br>
+                            • Studied the effects of supply voltage scaling on power and performance of standard cells.
+                            <br>
+                            • Designed and simulated a sub-threshold standard cells to optimize energy efficiency.
+                            <br>
+                            • Teaching Assistant for the EDA class of 2021.
+                            <br>
+                            • UMC 55nm Commercial Process Node
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>References</h2>
+                    <ul class="references">
+                        <li>
+                            <strong class="slightly-large-text">Neel Gala</strong>
+                            <br>
+                            CTO / Co-Founder, InCore Semiconductors
+                            <br>
+                            <a href="mailto:neelgala@incoresemi.com">neelgala@incoresemi.com</a>
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">Nitin Chandrachoodan</strong>
+                            <br>
+                            Professor, Integrated Circuits and Systems (ICS)
+                            <br>
+                            Indian Institute of Technology Madras
+                            <br>
+                            <a href="mailto:nitin@ee.iitm.ac.in">nitin@ee.iitm.ac.in</a>
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">Madhura Purnaprajna</strong>
+                            <br>
+                            Professor, Centre for Heterogeneous and Intelligent Processing Systems (CHIPS)
+                            <br>
+                            PES University
+                            <br>
+                            <a href="mailto:madhurap@pes.edu">madhurap@pes.edu</a>
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">Boris Grot</strong>
+                            <br>
+                            Professor, Edinburgh Architecture and Systems Lab (EASE)
+                            <br>
+                            University of Edinburgh
+                            <br>
+                            <a href="mailto:boris.grot@ed.ac.uk">boris.grot@ed.ac.uk</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="side-column">
+                <section>
+                    <h2>Projects</h2>
+                    <ul class="projects">
+                        <li>
+                            <strong class="slightly-large-text">RISC-V Application Profiler</strong>
+                            <br>
+                            Duration: Jun 2023 - Sep 2023
+                            <br>
+                            Mentor. Secondary Contributor.
+                            <!-- [<a href="https://riscv-application-profiler.readthedocs.io/en/latest/">Docs</a>] -->
+                            [<a href="https://github.com/mahendraVamshi/riscv-application-profiler">Code</a>]
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">Energy Efficient Sub-Threshold Standard Cells</strong>
+                            <br>
+                            Duration: Oct 2020 - Dec 2021
+                            <br>
+                            Bachelor's thesis project. Primary Contributor.
+                            [<a href="https://subvt.readthedocs.io/">Docs</a>] <!-- [<a href="#">Demo</a>] -->
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">uATG tests for a Non-Coherent Cache Subsystem (Chromite)</strong>
+                            <br>
+                            Duration: Jun 2020 - Nov 2021
+                            <br>
+                            Course project. Co-contributor.
+                            <!-- [<a href="https://subvt.readthedocs.io/">Docs</a>] --> [<a href="https://github.com/VIshweswaranK/Caches">Code</a>]
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Articles & Blogs</h2>
+                    <ul class="articles">
+                        <li>
+                            <strong class="slightly-large-text">Exploring the hidden wonders: CPU Micro-Architecture</strong>
+                            <br>
+                            Medium | June 2023
+                            <br>
+                            A short article on CPU Micro-Architecture.
+                            <br>
+                            [<a href="https://medium.com/@talktokarthikbk/exploring-the-hidden-wonders-cpu-micro-architecture-b8bb680738b7">Read Here</a>]
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">RISC-V Memory Protection: Diving Deep into the Complexities</strong>
+                            <br>
+                            Medium | Nov 2023
+                            <br>
+                            A short article on RISC-V Physical Memory Protection.
+                            <br>
+                            [<a href="https://medium.com/@talktokarthikbk/risc-v-memory-protection-diving-deep-into-the-complexities-9d751212be6b">Read Here</a>]
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Workshops</h2>
+                    <ul class="workshops">
+                        <li>
+                            <strong class="slightly-large-text">FPGA Summer School</strong> (2024)
+                            <br>
+                            PES University
+                            <br>
+                            Attendee.
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">EFCL Summer School</strong> (2024)
+                            <br>
+                            ETH Zurich
+                            <br>
+                            Attendee.
+                        </li>
+                        <li>
+                            <strong class="slightly-large-text">Computer Architecture Winter School</strong> (2021)
+                            <br>
+                            PES University, IIT Madras
+                            <br>
+                            Attendee.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Awards & Recognition</h2>
+                    <ul class="awards">
+                        <li>
+                            <strong class="slightly-large-text">Chairperson's list of top ten performers</strong> (2022)
+                            <br>
+                            D-ECE, PES University
+                            <br>
+                            Recieved the chairperson's award for top scorers with consistent academic performance and demonstrating an exemplary commitment to learning.
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>embrace ai. resistance is futile.</p>
+        </div>
+    </footer>
+</body>
+</html>

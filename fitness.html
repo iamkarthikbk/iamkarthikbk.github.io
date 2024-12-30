@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>karthik's fitness.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #2a2a2a;
+            --secondary-color: #1a1a1a;
+            --text-color: #e6e6e6;
+            --header-text-color: #f0f0f0;
+            --accent-color: #b19cd9;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --link-color: #9ccfd8;
+            --link-visited: #c4a7e7;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 75%;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1.2em;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+
+        .nav-button:hover {
+            background: var(--secondary-color);
+            color: var(--accent-color);
+        }
+
+        .page-heading {
+            font-size: 2.5em;
+            margin-bottom: 2rem;
+            color: var(--header-text-color);
+            position: absolute;
+            top: 80px;
+            left: 12.5%;
+            z-index: 10;
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 120px;
+            font-size: 1.2em;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="nav-button back-button">←</a>
+    
+    <h1 class="page-heading">karthik's fitness.</h1>
+    
+    <main class="container">
+        <div class="content">
+            work in progress
+        </div>
+    </main>
+</body>
+</html>

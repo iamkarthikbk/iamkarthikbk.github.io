@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>diving.</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2a2a2a;
+            --secondary-color: #1a1a1a;
+            --text-color: #e6e6e6;
+            --header-text-color: #f0f0f0;
+            --accent-color: #b19cd9;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --link-color: #9ccfd8;
+            --link-visited: #c4a7e7;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            width: 95%;
+            margin: 60px auto;
+            padding: 20px;
+            max-width: 100vw;
+            box-sizing: border-box;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            font-family: 'Courier New', monospace;
+            text-decoration: none;
+        }
+
+        .back-button {
+            left: 20px;
+        }
+
+        .stats-button {
+            right: 20px;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .dive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 0.85em;
+            table-layout: auto;
+        }
+
+        .dive-table th,
+        .dive-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--accent-color);
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .dive-table th {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            font-weight: normal;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .dive-table tr:hover {
+            background-color: var(--primary-color);
+        }
+
+        .dive-table td {
+            color: var(--text-color);
+        }
+
+        /* Column specific widths */
+        .dive-table th:nth-child(1), /* Dive Number */
+        .dive-table td:nth-child(1) {
+            min-width: 40px;
+            position: sticky;
+            left: 0;
+            background-color: var(--bg-color);
+            z-index: 2;
+        }
+
+        .dive-table th:nth-child(2), /* Date */
+        .dive-table td:nth-child(2) {
+            min-width: 100px;
+        }
+
+        .dive-table th:nth-child(3), /* Location */
+        .dive-table td:nth-child(3),
+        .dive-table th:nth-child(4), /* Site */
+        .dive-table td:nth-child(4) {
+            min-width: 120px;
+        }
+
+        .dive-table th:nth-child(5), /* Country */
+        .dive-table td:nth-child(5) {
+            min-width: 100px;
+        }
+
+        /* Numeric columns */
+        .dive-table td:nth-child(6),
+        .dive-table td:nth-child(7),
+        .dive-table td:nth-child(8),
+        .dive-table td:nth-child(9),
+        .dive-table td:nth-child(10),
+        .dive-table td:nth-child(11),
+        .dive-table td:nth-child(12),
+        .dive-table td:nth-child(13),
+        .dive-table td:nth-child(14),
+        .dive-table td:nth-child(15),
+        .dive-table td:nth-child(23),
+        .dive-table td:nth-child(24),
+        .dive-table td:nth-child(25) {
+            text-align: right;
+        }
+
+        .dive-table tbody tr {
+            position: relative;
+            background: linear-gradient(to right, 
+                rgba(0, 255, 0, 0.1) calc(var(--o2-width, 0%) + 40px), 
+                transparent calc(var(--o2-width, 0%) + 40px)
+            );
+        }
+
+        .stats-and-graphs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0 40px 0;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-and-graphs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stats-container {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat-item {
+            flex: 1;
+            font-size: 1.8em;
+            color: var(--accent-color);
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 0.4em;
+            color: var(--text-color);
+            margin-top: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-container {
+                flex-wrap: wrap;
+            }
+
+            .stat-item {
+                flex: 1 1 40%;
+                font-size: 1.5em;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .stat-item {
+                flex: 1 1 100%;
+            }
+        }
+
+        #sacGraph, #durationGraph {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        /* Section headings */
+        .section-heading {
+            color: var(--accent-color);
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding-bottom: 10px;
+        }
+
+        .page-heading {
+            color: var(--header-text-color);
+            font-size: 2.5em;
+            margin: 0 0 20px 0;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--link-color);
+        }
+    </style>
+</head>
+<body>
+    <a href="home.html" class="nav-button back-button">←</a>
+
+    <div class="container">
+        <h1 class="page-heading">karthik's diving.</h1>
+        <h2 class="section-heading">Summary</h2>
+        <div class="stats-and-graphs">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div id="totalDives">0</div>
+                    <span>Total Dives</span>
+                </div>
+                <div class="stat-item">
+                    <div id="totalTime">0</div>
+                    <span>Hours Underwater</span>
+                </div>
+                <div class="stat-item">
+                    <div id="totalAir">0</div>
+                    <span>Total Air (L)</span>
+                </div>
+                <div class="stat-item">
+                    <div id="totalNitrox">0</div>
+                    <span>Nitrox Dives</span>
+                </div>
+            </div>
+            <div id="sacGraph" style="width:100%; height:300px;"></div>
+            <div id="durationGraph" style="width:100%; height:300px;"></div>
+        </div>
+
+        <h2 class="section-heading">Logs</h2>
+        <div class="table-container">
+            <table class="dive-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Site</th>
+                        <th>Country</th>
+                        <th>Depth (m)</th>
+                        <th>Avg Depth (m)</th>
+                        <th>Duration (min)</th>
+                        <th>Rating</th>
+                        <th>Water Temp (°C)</th>
+                        <th>Surface Interval (min)</th>
+                        <th>O₂ %</th>
+                        <th>Start Pressure (bar)</th>
+                        <th>End Pressure (bar)</th>
+                        <th>Tank Volume (L)</th>
+                        <th>Water Type</th>
+                        <th>Entry/Exit</th>
+                        <th>Current</th>
+                        <th>Surface</th>
+                        <th>Weather</th>
+                        <th>Weights (kg)</th>
+                        <th>SAC (L/min)</th>
+                        <th>Air Consumption (L)</th>
+                        <th>Visibility</th>
+                        <th>Dive Center</th>
+                    </tr>
+                </thead>
+                <tbody id="diveTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function loadDives() {
+            return fetch('data/dives.json')
+                .then(response => response.json())
+                .then(data => {
+                    const diveTableBody = document.getElementById('diveTableBody');
+                    diveTableBody.innerHTML = '';
+
+                    let totalTimeMinutes = 0;
+                    let totalAirConsumption = 0;
+                    let nitroxDives = 0;
+
+                    // Sort dives by diveNumber in descending order (most recent first)
+                    const sortedDives = [...data['dive-log']].sort((a, b) => b.diveNumber - a.diveNumber);
+
+                    sortedDives.forEach(dive => {
+                        const row = document.createElement('tr');
+                        row.style.setProperty('--o2-width', `${(dive.o2Percentage - 21) * 5}%`);
+
+                        row.innerHTML = `
+                            <td>${dive.diveNumber}</td>
+                            <td>${dive.date}</td>
+                            <td>${dive.location}</td>
+                            <td>${dive.site}</td>
+                            <td>${dive.country}</td>
+                            <td>${dive.depth}</td>
+                            <td>${dive.avgDepth}</td>
+                            <td>${dive.duration}</td>
+                            <td>${dive.rating}</td>
+                            <td>${dive.waterTemp}</td>
+                            <td>${dive.surfaceInterval}</td>
+                            <td>${dive.o2Percentage}</td>
+                            <td>${dive.startPressure}</td>
+                            <td>${dive.endPressure}</td>
+                            <td>${dive.tankVolume}</td>
+                            <td>${dive.waterType}</td>
+                            <td>${dive.entryExit}</td>
+                            <td>${dive.current}</td>
+                            <td>${dive.surfaceConditions}</td>
+                            <td>${dive.weather}</td>
+                            <td>${dive.weights}</td>
+                            <td>${dive.sac}</td>
+                            <td>${dive.airConsumption}</td>
+                            <td>${dive.visibility}</td>
+                            <td>${dive.diveCenter}</td>
+                        `;
+                        diveTableBody.appendChild(row);
+
+                        totalTimeMinutes += dive.duration;
+                        totalAirConsumption += dive.airConsumption;
+                        if (dive.isNitrox) nitroxDives++;
+                    });
+
+                    document.getElementById('totalDives').textContent = sortedDives.length;
+                    document.getElementById('totalTime').textContent = (totalTimeMinutes / 60).toFixed(1);
+                    document.getElementById('totalAir').textContent = totalAirConsumption.toLocaleString();
+                    document.getElementById('totalNitrox').textContent = nitroxDives;
+
+                    updateGraphs(data['dive-log']);
+                })
+                .catch(error => console.error('Error loading dive data:', error));
+        }
+
+        async function updateGraphs(dives) {
+            // Sort dives by dive number for the graphs
+            const sortedDives = [...dives].sort((a, b) => a.diveNumber - b.diveNumber);
+            const diveNumbers = sortedDives.map(dive => dive.diveNumber);
+            const durations = sortedDives.map(dive => dive.duration);
+            const sacs = sortedDives.map(dive => dive.sac);
+
+            // SAC Rate over time
+            const sacTrace = {
+                x: diveNumbers,
+                y: sacs,
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'SAC Rate',
+                marker: {
+                    color: '#b19cd9'
+                },
+                line: {
+                    color: '#b19cd9'
+                },
+                hovertemplate: 'Dive #%{x}<br>SAC: %{y:.2f} L/min<extra></extra>'
+            };
+
+            const sacLayout = {
+                title: 'SAC Rate by Dive Number',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e6e6e6'
+                },
+                xaxis: {
+                    title: 'Dive #',
+                    gridcolor: '#2a2a2a',
+                    tickmode: 'linear',
+                    dtick: 1,
+                    range: [0.5, Math.max(...diveNumbers) + 0.5]
+                },
+                yaxis: {
+                    title: 'SAC Rate (L/min)',
+                    gridcolor: '#2a2a2a'
+                }
+            };
+
+            // Duration over time
+            const durationTrace = {
+                x: diveNumbers,
+                y: durations,
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'Duration',
+                marker: {
+                    color: '#9ccfd8'
+                },
+                line: {
+                    color: '#9ccfd8'
+                },
+                hovertemplate: 'Dive #%{x}<br>Duration: %{y} min<extra></extra>'
+            };
+
+            const durationLayout = {
+                title: 'Dive Duration by Dive Number',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e6e6e6'
+                },
+                xaxis: {
+                    title: 'Dive #',
+                    gridcolor: '#2a2a2a',
+                    tickmode: 'linear',
+                    dtick: 1,
+                    range: [0.5, Math.max(...diveNumbers) + 0.5]
+                },
+                yaxis: {
+                    title: 'Duration (min)',
+                    gridcolor: '#2a2a2a'
+                }
+            };
+
+            const config = {
+                responsive: true,
+                displayModeBar: false
+            };
+
+            Plotly.newPlot('sacGraph', [sacTrace], sacLayout, config);
+            Plotly.newPlot('durationGraph', [durationTrace], durationLayout, config);
+        }
+
+        // Load dive data and update graphs when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded, loading dives...');
+            loadDives();
+        });
+    </script>
+</body>
+</html>
