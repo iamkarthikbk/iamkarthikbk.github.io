@@ -1,0 +1,203 @@
+locations:
+  - name: "Santorini, Greece"
+    coordinates: [36.3932, 25.4615]
+    description: "A stunning volcanic island in the Aegean Sea, known for its white-washed buildings and spectacular sunsets."
+    date: "Summer 2023"
+    type: "visited"
+    
+  - name: "Mumbai, India"
+    coordinates: [19.0760, 72.8777]
+    description: "The financial capital of India, a vibrant metropolis where tradition meets modernity."
+    date: "Home"
+    type: "home"
+    
+  - name: "Bengaluru, India"
+    coordinates: [12.9716, 77.5946]
+    description: "India's Silicon Valley, known for its pleasant weather and tech ecosystem."
+    date: "Home"
+    type: "home"
+    
+  - name: "Chennai, India"
+    coordinates: [13.0827, 80.2707]
+    description: "The cultural capital of South India, famous for its music, dance, and cuisine."
+    date: "Home"
+    type: "home"
+    
+  - name: "Goa, India"
+    coordinates: [15.2993, 74.1240]
+    description: "A coastal paradise known for its beaches, Portuguese architecture, and laid-back culture."
+    date: "Multiple times"
+    type: "visited"
+    
+  - name: "Havelock Island, Andamans"
+    coordinates: [11.9934, 93.0094]
+    description: "A tropical paradise in the Bay of Bengal with pristine beaches and coral reefs."
+    date: "Winter 2023"
+    type: "visited"
+    
+  - name: "Tromsø, Norway"
+    coordinates: [69.6492, 18.9553]
+    description: "The gateway to the Arctic, famous for Northern Lights and the midnight sun."
+    date: "Winter 2023"
+    type: "visited"
+    
+  - name: "Oslo, Norway"
+    coordinates: [59.9139, 10.7522]
+    description: "Norway's capital, a blend of modern architecture and Viking history."
+    date: "Winter 2023"
+    type: "visited"
+    
+  - name: "Lofoten Islands, Norway"
+    coordinates: [68.2181, 13.5456]
+    description: "Dramatic landscapes with fjords, mountains, and traditional fishing villages."
+    date: "Winter 2023"
+    type: "visited"
+    
+  - name: "Abu Dhabi, UAE"
+    coordinates: [24.4539, 54.3773]
+    description: "The capital of the UAE, known for its modern architecture and cultural landmarks."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Dubai, UAE"
+    coordinates: [25.2048, 55.2708]
+    description: "A global city known for luxury shopping, ultramodern architecture, and vibrant nightlife."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Al Ain, UAE"
+    coordinates: [24.2075, 55.7447]
+    description: "The Garden City of the UAE, known for its oases, forts, and archaeological sites."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Athens, Greece"
+    coordinates: [37.9838, 23.7275]
+    description: "The historic capital of Greece, home to ancient landmarks like the Acropolis and Parthenon."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Nafplio, Greece"
+    coordinates: [37.5667, 22.8]
+    description: "A charming coastal town with Venetian fortresses and neoclassical architecture."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Daphni, Greece"
+    coordinates: [38.0167, 23.6167]
+    description: "A historic area near Athens, known for the UNESCO World Heritage Daphni Monastery."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Singapore"
+    coordinates: [1.3521, 103.8198]
+    description: "A vibrant city-state blending modern innovation with rich cultural heritage."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Manila, Philippines"
+    coordinates: [14.5995, 120.9842]
+    description: "The bustling capital of the Philippines, rich in history and culture."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Anilao, Batangas, Philippines"
+    coordinates: [13.7833, 120.9167]
+    description: "A renowned diving destination with vibrant coral reefs and diverse marine life."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Colombo, Sri Lanka"
+    coordinates: [6.9271, 79.8612]
+    description: "The commercial capital of Sri Lanka, a vibrant city with colonial architecture and bustling markets."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Trincomalee, Sri Lanka"
+    coordinates: [8.5874, 81.2152]
+    description: "A historic port city on the northeast coast, known for pristine beaches and natural harbor."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Pondicherry, India"
+    coordinates: [11.9416, 79.8083]
+    description: "A charming coastal town with French colonial heritage, serene beaches, and spiritual centers."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "New Delhi, India"
+    coordinates: [28.6139, 77.2090]
+    description: "India's capital, a blend of ancient monuments and modern infrastructure."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Dehradun, India"
+    coordinates: [30.3165, 78.0322]
+    description: "A picturesque city in the Himalayan foothills, gateway to hill stations and pilgrimage sites."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Rishikesh, India"
+    coordinates: [30.0869, 78.2676]
+    description: "The Yoga Capital of the World, nestled in the Himalayas along the sacred Ganges River."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Vadodara, India"
+    coordinates: [22.3072, 73.1812]
+    description: "The Cultural Capital of Gujarat, known for its palaces, museums, and rich heritage."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Kochi, India"
+    coordinates: [9.9312, 76.2673]
+    description: "A vibrant port city in Kerala, blending colonial history with modern culture."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Alappuzha, India"
+    coordinates: [9.4981, 76.3388]
+    description: "The Venice of the East, famous for its backwaters, houseboats, and serene canals."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Rameswaram, India"
+    coordinates: [9.2876, 79.3129]
+    description: "A sacred pilgrimage town on an island, known for the Ramanathaswamy Temple."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Dhanushkodi, India"
+    coordinates: [9.1833, 79.4167]
+    description: "A ghost town at India's southern tip, where the Bay of Bengal meets the Indian Ocean."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Zurich, Switzerland"
+    coordinates: [47.3769, 8.5417]
+    description: "Switzerland's largest city, known for its banking, pristine lake, and alpine views."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Lausanne, Switzerland"
+    coordinates: [46.5197, 6.6323]
+    description: "A picturesque city on Lake Geneva, home to the Olympic Museum and medieval old town."
+    date: "Visited"
+    type: "visited"
+    
+  - name: "Évian-les-Bains, France"
+    coordinates: [46.4008, 6.5889]
+    description: "A charming spa town on Lake Geneva, famous for its mineral water and Belle Époque architecture."
+    date: "Visited"
+    type: "visited"
+
+# To add a new location, find coordinates using Google Maps:
+# Right-click on a location → Click the coordinates to copy them
+# Or use https://www.latlong.net/
+#
+# Example:
+#  - name: "Paris, France"
+#    coordinates: [48.8566, 2.3522]
+#    description: "The City of Light"
+#    date: "Spring 2024"
+#    type: "visited"
