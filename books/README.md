@@ -62,6 +62,7 @@ These books remain external links; their full PDFs are not included here.
 
 - [The Hitchhiker's Guide to Logical Verification (2026)](https://github.com/lean-forward/logical_verification_2026):
   the author's freely accessible PDF states “All rights reserved.”
+- [Real World Haskell](https://book.realworldhaskell.org/read/): free online edition.
 - [Crafting Interpreters](https://craftinginterpreters.com/): free complete web edition;
   the author's formatted PDF is a paid edition.
 - [Algorithms to Live By](https://algorithmstoliveby.com/): official book website.
