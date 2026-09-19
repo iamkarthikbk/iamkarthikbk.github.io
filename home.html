@@ -3,141 +3,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Karthik B K — CPU design engineer, micro-architect, and research scholar.">
+    <meta name="theme-color" content="#121212">
     <title>karthik.</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script src="theme.js"></script>
     <style>
         :root {
-            --primary-color: #2a2a2a;
-            --secondary-color: #1a1a1a;
+            color-scheme: dark;
+            --bg-color: #121212;
+            --border-color: #2a2a2a;
             --text-color: #e6e6e6;
+            --muted-color: #a7a7a7;
             --header-text-color: #f0f0f0;
             --accent-color: #b19cd9;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
             --link-color: #9ccfd8;
             --link-visited: #c4a7e7;
+            --display-font: 'Courier New', Courier, monospace;
+            --name-size-reduction: 8pt;
+        }
+
+        :root[data-theme="light"] {
+            color-scheme: light;
+            --bg-color: #f7f6fa;
+            --border-color: #d9d5e1;
+            --text-color: #25222c;
+            --muted-color: #65616f;
+            --header-text-color: #17141e;
+            --accent-color: #6c4f8c;
+            --link-color: #256672;
+            --link-visited: #75568c;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            background: var(--bg-color);
             color: var(--text-color);
-            background-color: var(--bg-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            font-family: var(--display-font);
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
 
         .container {
-            width: 75%;
-            max-width: 800px;
-            text-align: center;
-            padding: 2rem;
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            padding: 1.5rem 2.5rem 2.5rem;
         }
 
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 0%;
-            object-fit: cover;
-            border: 2px solid var(--accent-color);
+        .site-controls {
+            display: flex;
+            justify-content: flex-end;
             margin-bottom: 2rem;
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.875rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .theme-toggle[hidden] {
+            display: none;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .theme-toggle .moon-icon,
+        :root[data-theme="light"] .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        :root[data-theme="light"] .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        .hero {
+            --name-font-size: calc(clamp(4rem, 10vw, 7rem) - var(--name-size-reduction));
+            --subtitle-font-size: calc(0.9375rem + 5pt);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            column-gap: 5rem;
+            row-gap: 1.75rem;
+            align-items: stretch;
+        }
+
+        h1, h2, p {
+            margin: 0;
         }
 
         h1 {
             color: var(--header-text-color);
-            font-size: 2.5em;
-            margin: 0.5rem 0;
+            font-family: var(--display-font);
+            font-size: var(--name-font-size);
+            font-weight: 400;
+            letter-spacing: -0.075em;
+            line-height: 1.05;
+            /* Align the visible edge of the large monospace name with the subtitle. */
+            text-indent: -0.1em;
         }
 
         .subtitle {
+            margin-top: 1rem;
             color: var(--accent-color);
-            font-size: 1.2em;
-            margin-bottom: 2rem;
+            font-family: var(--display-font);
+            font-size: var(--subtitle-font-size);
+            line-height: 1.7;
         }
 
-        .about {
-            text-align: justify;
-            margin: 2rem 0;
-            padding: 2rem;
-            background-color: var(--primary-color);
-            border-radius: 8px;
+        .hero-affiliations, .hero-location {
+            color: var(--muted-color);
+            line-height: 1.6;
         }
 
-        .about a {
+        .hero-affiliations {
+            margin-top: 0.625rem;
+            font-size: 1rem;
+        }
+
+        .hero-location {
+            margin-top: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .profile-photo {
+            grid-column: 2;
+            grid-row: 1;
+            justify-self: end;
+            width: auto;
+            height: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            /* Let the text block determine the row height. */
+            contain: size;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+        }
+
+        .about, .reading-sections {
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .reading-sections {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 3rem;
+        }
+
+        .bio {
+            max-width: 72ch;
+        }
+
+        h2 {
+            margin-bottom: 1.25rem;
             color: var(--accent-color);
-            text-decoration: none;
+            font-family: var(--display-font);
+            font-size: calc(1rem + 2pt);
+            font-weight: 700;
+            line-height: 1.5;
         }
 
-        .about a:hover {
-            text-decoration: underline;
+        .bio p + p {
+            margin-top: 1.5rem;
         }
 
-        .nav-links {
-            margin-top: 2rem;
-        }
-
-        .nav-links a {
+        a {
             color: var(--link-color);
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.2em;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-links a:visited {
+        a:visited {
             color: var(--link-visited);
         }
 
-        footer {
-            margin-top: auto;
-            padding: 1rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 0.9em;
+        a:hover {
+            color: var(--header-text-color);
         }
 
-        @media (max-width: 768px) {
+        a:focus-visible, .theme-toggle:focus-visible, .reading-group summary:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 5px;
+            border-radius: 2px;
+        }
+
+        .article-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .article-list li + li {
+            margin-top: 1.5rem;
+        }
+
+        .article-list a, .article-heading {
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .article-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: baseline;
+            column-gap: 1rem;
+        }
+
+        .article-list time, .reading-author {
+            display: block;
+            margin-top: 0.35rem;
+            color: var(--muted-color);
+            font-size: 0.875rem;
+        }
+
+        .reading-group {
+            border-top: 1px solid var(--border-color);
+        }
+
+        .reading-group:last-child {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reading-group summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto 1rem;
+            align-items: center;
+            gap: 1rem;
+            min-height: 60px;
+            padding: 1rem 0;
+            color: var(--accent-color);
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .reading-group summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .reading-group summary:hover .reading-group-title {
+            color: var(--header-text-color);
+        }
+
+        .reading-count {
+            color: var(--muted-color);
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .reading-chevron {
+            width: 1rem;
+            height: 1rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .reading-group[open] .reading-chevron {
+            transform: rotate(90deg);
+        }
+
+        .reading-group > .article-list {
+            padding: 0.5rem 0 2rem;
+        }
+
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            margin-top: 3rem;
+            font-family: var(--display-font);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 760px) {
             .container {
-                width: 90%;
-                padding: 1rem;
+                max-width: 600px;
+                padding: 1.5rem 1.5rem 2.5rem;
+            }
+
+            .hero, .reading-sections {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.75rem;
+            }
+
+            .profile-photo {
+                grid-column: 1;
+                grid-row: 1;
+                justify-self: start;
+                width: 100px;
+                height: 100px;
+                border-radius: 0.75rem;
+            }
+
+            .hero {
+                --name-font-size: calc(clamp(3.5rem, 14vw, 5rem) - var(--name-size-reduction));
+            }
+
+            .about, .reading-sections {
+                gap: 2.5rem;
+                margin-top: 2.5rem;
+                padding-top: 2rem;
+            }
+
+            footer {
+                margin-top: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="images/profile.jpeg?v=2" alt="Karthik B K" class="profile-photo">
-        <h1>karthik.</h1>
-        <div class="subtitle">cpu design engineer / micro-architect</div>
-        
+    <main class="container">
+        <div class="site-controls">
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" hidden>
+                <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.5 13.2A8.5 8.5 0 0 1 10.8 3.5a8.5 8.5 0 1 0 9.7 9.7Z"></path>
+                </svg>
+                <span class="theme-label">light mode</span>
+            </button>
+        </div>
+        <header class="hero">
+            <hgroup>
+                <h1>karthik.</h1>
+                <p class="subtitle">computer architect and researcher.</p>
+                <p class="hero-affiliations">incore and iit madras.</p>
+                <p class="hero-location">chennai, india.</p>
+            </hgroup>
+            <img src="images/profile.jpeg?v=3" alt="Karthik B K" class="profile-photo" width="1182" height="1182">
+        </header>
+
         <div class="about">
-            <p>
-                I am an engineer, deep sea diver, photographer, and a huge fitness enthusiast amongst many other things.
-            </p><p>
-                I am currently with <a href="https://www.incoresemi.com" target="_blank">InCore</a> as a CPU Design Engineer / Micro-Architect, for about 4 years now.
-                I am also a research scholar at <a href="https://www.iitm.ac.in" target="_blank">IIT Madras</a> pursuing my MS in Electrical Engineering.
-            </p><p>
-                Prior to this, I was with the <a href="https://chips.pes.edu" target="_blank">Centre for Heterogeneous and Intelligent Processing Systems</a> working on Energy Efficient Computing Techniques.
-                Prior to that, I was a mentee at the Linux Foundation working on device drivers for the Linux kernel.
-            </p><p>
-                My research interests lie in Digital System Design, Electronic Design Automation, Formal Verification and Computer Architecture.
-            </p>
+            <section class="bio" aria-labelledby="bio-heading">
+                <h2 id="bio-heading">bio.</h2>
+                <p>
+                    I am an engineer, deep sea diver, and a fitness enthusiast amongst many other things.
+                </p>
+                <p>
+                    I am currently with <a href="https://www.incoresemi.com" target="_blank" rel="noopener noreferrer">InCore</a> as a Senior Design Engineer. It has been about <span style="color: var(--accent-color);"><b>5 years</b></span>.
+                    I am also a research scholar with the <a href="https://www.ee.iitm.ac.in/vlsi/start" target="_blank" rel="noopener noreferrer">Integrated Circuits and Systems group</a> at <a href="https://www.iitm.ac.in" target="_blank" rel="noopener noreferrer">IIT Madras</a>.
+                    Prior to this, I was with the <a href="https://chips.pes.edu" target="_blank" rel="noopener noreferrer">Centre for Heterogeneous and Intelligent Processing Systems</a> at <a href="https://www.pes.edu" target="_blank" rel="noopener noreferrer">PES</a>.
+                    Prior to that, I was a mentee at the Linux Foundation.
+                </p>
+                <p>
+                    My research interests lie in Formal Methods for Logic Verification, Electronic Design Automation and Computer Architecture.
+                </p>
+            </section>
         </div>
 
-        <div class="nav-links">
-            <a href="travel.html">travel</a>
-            <a href="diving.html">diving</a>
-            <a href="fitness.html">fitness</a>
+        <div class="reading-sections">
+            <section id="blogs" aria-labelledby="blogs-heading">
+                <h2 id="blogs-heading">blogs.</h2>
+                <ul class="article-list">
+                    <li>
+                        <div class="article-heading">
+                            <span>RISC-V Memory Protection: Diving Deep into the Complexities</span>
+                            <a href="https://medium.com/@talktokarthikbk/risc-v-memory-protection-diving-deep-into-the-complexities-9d751212be6b" target="_blank" rel="noopener noreferrer" aria-label="RISC-V Memory Protection: Diving Deep into the Complexities (link)">(link)</a>
+                        </div>
+                        <time datetime="2023-11-23">23 November 2023</time>
+                    </li>
+                    <li>
+                        <div class="article-heading">
+                            <span>Exploring the hidden wonders: CPU Micro-Architecture</span>
+                            <a href="https://medium.com/@talktokarthikbk/exploring-the-hidden-wonders-cpu-micro-architecture-b8bb680738b7" target="_blank" rel="noopener noreferrer" aria-label="Exploring the hidden wonders: CPU Micro-Architecture (link)">(link)</a>
+                        </div>
+                        <time datetime="2023-06-29">29 June 2023</time>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="recommended-readings" aria-labelledby="readings-heading">
+                <h2 id="readings-heading">recommended readings.</h2>
+                <details class="reading-group">
+                    <summary>
+                        <span id="formal-methods-heading" class="reading-group-title">formal methods &amp; verification</span>
+                        <span class="reading-count">5 books</span>
+                        <svg class="reading-chevron" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="m6 3 5 5-5 5"></path>
+                        </svg>
+                    </summary>
+                    <ul class="article-list">
+                        <li>
+                            <div class="article-heading">
+                                <span>SAT/SMT by Example</span>
+                                <a href="books/sat-smt-by-example.pdf" download aria-label="Download SAT/SMT by Example (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Dennis Yurichev</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>The Hitchhiker’s Guide to Logical Verification (2026)</span>
+                                <a href="https://raw.githubusercontent.com/lean-forward/logical_verification_2026/main/hitchhikers_guide_2026_desktop.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open The Hitchhiker’s Guide to Logical Verification (2026) (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Anne Baanen, Alexander Bentkamp, Jasmin Blanchette, Xavier Généreux, Johannes Hölzl, and Jannis Limperg</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Theorem Proving in Lean 4</span>
+                                <a href="books/theorem-proving-in-lean-4.pdf" download aria-label="Download Theorem Proving in Lean 4 (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Jeremy Avigad, Leonardo de Moura, Soonho Kong, and Sebastian Ullrich</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Decision Procedures: An Algorithmic Point of View</span>
+                                <a href="https://www.decision-procedures.org/" target="_blank" rel="noopener noreferrer" aria-label="Open Decision Procedures: An Algorithmic Point of View (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Daniel Kroening and Ofer Strichman</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Software Foundations</span>
+                                <a href="https://softwarefoundations.cis.upenn.edu/" target="_blank" rel="noopener noreferrer" aria-label="Open Software Foundations (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Benjamin C. Pierce and contributors</p>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="reading-group">
+                    <summary>
+                        <span id="programming-heading" class="reading-group-title">programming &amp; language design</span>
+                        <span class="reading-count">3 books</span>
+                        <svg class="reading-chevron" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="m6 3 5 5-5 5"></path>
+                        </svg>
+                    </summary>
+                    <ul class="article-list">
+                        <li>
+                            <div class="article-heading">
+                                <span>Functional Programming in Lean</span>
+                                <a href="books/functional-programming-in-lean.pdf" download aria-label="Download Functional Programming in Lean (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">David Thrane Christiansen</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Crafting Interpreters</span>
+                                <a href="https://craftinginterpreters.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Crafting Interpreters (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Robert Nystrom</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Essentials of Compilation: An Incremental Approach in Python</span>
+                                <a href="books/essentials-of-compilation.pdf" download aria-label="Download Essentials of Compilation: An Incremental Approach in Python (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Jeremy G. Siek</p>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="reading-group">
+                    <summary>
+                        <span id="digital-design-heading" class="reading-group-title">digital design &amp; computer architecture</span>
+                        <span class="reading-count">3 books</span>
+                        <svg class="reading-chevron" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="m6 3 5 5-5 5"></path>
+                        </svg>
+                    </summary>
+                    <ul class="article-list">
+                        <li>
+                            <div class="article-heading">
+                                <span>Synthesis and Optimization of Digital Circuits</span>
+                                <a href="https://si2.epfl.ch/demichel/publications/mcgraw/" target="_blank" rel="noopener noreferrer" aria-label="Open Synthesis and Optimization of Digital Circuits (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Giovanni De Micheli</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>BSV by Example</span>
+                                <a href="https://raw.githubusercontent.com/BSVLang/Main/master/Tutorials/BSV_by_Example_Book/bsv_by_example.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open BSV by Example (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Rishiyur S. Nikhil and Kathy R. Czeck</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Learn RISC-V CPU Implementation and BSV</span>
+                                <a href="https://github.com/rsnikhil/Learn_Bluespec_and_RISCV_Design/blob/main/Book_BLang_RISCV.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Learn RISC-V CPU Implementation and BSV (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">Rishiyur S. Nikhil</p>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="reading-group">
+                    <summary>
+                        <span id="self-help-heading" class="reading-group-title">self-help &amp; decision-making</span>
+                        <span class="reading-count">4 books</span>
+                        <svg class="reading-chevron" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="m6 3 5 5-5 5"></path>
+                        </svg>
+                    </summary>
+                    <ul class="article-list">
+                        <li>
+                            <div class="article-heading">
+                                <span>Algorithms to Live By</span>
+                                <a href="https://algorithmstoliveby.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Algorithms to Live By (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Brian Christian and Tom Griffiths</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>As a Man Thinketh</span>
+                                <a href="books/as-a-man-thinketh.pdf" download aria-label="Download As a Man Thinketh (PDF)">(link)</a>
+                            </div>
+                            <p class="reading-author">James Allen</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Thinking in Systems</span>
+                                <a href="https://www.penguinrandomhouse.com/books/801035/thinking-in-systems-by-donella-meadows/" target="_blank" rel="noopener noreferrer" aria-label="Open Thinking in Systems (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Donella H. Meadows</p>
+                        </li>
+                        <li>
+                            <div class="article-heading">
+                                <span>Thinking in Bets</span>
+                                <a href="https://www.annieduke.com/books/" target="_blank" rel="noopener noreferrer" aria-label="Open Thinking in Bets (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Annie Duke</p>
+                        </li>
+                    </ul>
+                </details>
+
+                <details class="reading-group">
+                    <summary>
+                        <span id="personal-finance-heading" class="reading-group-title">personal finance</span>
+                        <span class="reading-count">1 book</span>
+                        <svg class="reading-chevron" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="m6 3 5 5-5 5"></path>
+                        </svg>
+                    </summary>
+                    <ul class="article-list">
+                        <li>
+                            <div class="article-heading">
+                                <span>Let’s Talk Money</span>
+                                <a href="https://www.monikahalan.com/lets-talk-money-english/" target="_blank" rel="noopener noreferrer" aria-label="Open Let’s Talk Money (official website)">(link)</a>
+                            </div>
+                            <p class="reading-author">Monika Halan</p>
+                        </li>
+                    </ul>
+                </details>
+            </section>
         </div>
-    </div>
+
+        <footer>
+            <a href="https://github.com/iamkarthikbk" target="_blank" rel="noopener noreferrer">github</a>
+            <a href="https://linkedin.com/in/iamkarthikbk" target="_blank" rel="noopener noreferrer">linkedin</a>
+            <a href="https://scholar.google.com/citations?user=dJOtrssAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">google scholar</a>
+            <a href="https://unsplash.com/@thatbangaloreanguy" target="_blank" rel="noopener noreferrer">unsplash</a>
+        </footer>
+    </main>
 </body>
 </html>
